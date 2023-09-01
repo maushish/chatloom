@@ -7,6 +7,9 @@ export default {
         colors:{
           customGreen:'#5B9132',
           mainBlack:'#171515',
+        },
+        fontFamily:{
+          'rothorn-dc': ['Rothorn DC', 'sans'],
         }
     },
   
