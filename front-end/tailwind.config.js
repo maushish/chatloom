@@ -1,19 +1,17 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [],
+module.exports = {
+  content: ['./index.html', './src/**/*.{jsx,js}'],
   theme: {
     extend: {
-          //Custom named colors 
-        colors:{
-          customGreen:'#5B9132',
-          mainBlack:'#171515',
-        },
-        fontFamily:{
-          'rothorn-dc': ['Rothorn DC', 'sans'],
-        }
+      // Custom named colors
+      colors: {
+        customGreen: '#5B9132',
+        mainBlack: '#171515',
+        txt1:'#FFF'
+      },
+      fontFamily: {
+        'Open Sans': ['Open Sans', 'sans-serif'],
+      },
     },
-  
   },
   plugins: [],
-}
-
+};
