@@ -8,9 +8,9 @@ function Landing() {
     <div className='bg-mainBlack h-screen '>
       <div className=' text-txt1 flex flex-col items-center justify-center  '>
           <a className=''>
-          <img src={chatloom} alt='logo' className="h-20 mt-[1%]   absolute left-0" />
+          <img src={chatloom} alt='logo' className="h-20 mt-[1%] absolute left-0" />
           </a>
-          <div className='lex flex-col items-center justify-center mt-[14%]'>
+          <div className='flex-col items-center justify-center mt-[14%]'>
             <a>
             <img src={Group24} alt='chat' className="h-18 " />
             </a>
