@@ -4,16 +4,17 @@ import Login from './Components/Login'
 import Landing from './Components/Landing';
 import 'tailwindcss/tailwind.css';
 import './styles/tailwind.css'
-
+import { Routes, Route } from "react-router-dom"
 
 function App() {
-
-
   return (
     <>
-      <Landing/>
-      <Login/>
-      <Chat/>
+      <Routes>
+        <Route path='' element={<Landing/>}/>
+        <Route path='//' element={<Login/>}/>
+        <Route path='/////' element={<Chat/>}/>
+
+      </Routes>
     </>
   )
 }
