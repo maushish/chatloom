@@ -8,7 +8,7 @@ function Landing() {
           <div className=' text-5xl py-20 flex flex-col items-center justify-center' >
               <h2  >keep your identity  <span className='text-customGreen '> safe</span></h2>
               <div className='py-20 text-black'>
-              <button className=' outline-red px-4 py-2 bg-white rounded-md outline-4 hover:'>Join {'>'}</button>
+              <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2'>Join {'>'}</button>
               </div>
 
           </div>
