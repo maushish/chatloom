@@ -12,6 +12,10 @@ module.exports = {
         txt1:'#FFF',
         btn:'#171515',
       },
+      backgroundColor:{
+        'form': 'var(--grey-popup-base, #383838)',
+
+      },
       //font-family
       fontFamily: {
         'Open Sans': ['Open Sans', 'sans-serif'],
