@@ -25,9 +25,9 @@ function Login() {
         </h2>
       </div>
       <div className='flex flex-co items-center justify-center'>
-      <div className='container-div'>
-      <div className='bg-black-gradient  px-3 py-2 rounded-xl mt-[-5%] z-10 w-20 ml-[5%] text-txt1'>About</div>
-        <div className='bg-form w-96 p-10  rounded-lg text-txt1 mt-[3%] flex flex-col justify-center items-center'>
+      <div className='container-div relative'>
+      <div className='bg-black-gradient relative px-4 py-2 rounded-xl top-8 z-5 w-20 ml-[5%] text-txt1'>About</div>
+        <div className='bg-form w-96 p-10  z-0 rounded-lg text-txt1 mt-[3%] flex flex-col justify-center items-center'>
           <form className='flex flex-col justify-center items-center py-0'>
             <div className='flex flex-col'>
             <label className='py-2' htmlFor='avatar' onClick={openAvatarInput} style={{ cursor: 'pointer' }}>
