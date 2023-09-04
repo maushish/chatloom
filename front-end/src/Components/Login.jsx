@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ava from "../Images/avatar.jpeg"
 
 function Login() {
   const [avatar, setAvatar] = useState(null);
@@ -32,8 +33,8 @@ function Login() {
               </label>
               <div className='relative w-16 h-16 rounded-full overflow-hidden mt-2' onClick={openAvatarInput} style={{ cursor: 'pointer' }}>
                 <img
-                  src={avatar || '/default-avatar.png'}
-                  alt='Avatar'
+                  src={avatar || ava}
+                  alt='Image'
                   className='object-cover w-full h-full'
                 />
               </div>
