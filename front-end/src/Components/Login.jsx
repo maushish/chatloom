@@ -43,7 +43,7 @@ function Login() {
                 onChange={handleAvatarChange}
                 id='avatar'
                 name='avatar'
-                className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer'
+                className='absolute top-0 left-0 w-2 h-2 opacity-0 cursor-pointer'
                 ref={avatarInputRef}
               />
               <label className='py-4' htmlFor='username'>
@@ -69,7 +69,7 @@ function Login() {
           </form>
         </div>
       </div>
-      <a className='mt-[2%] md:ml-[45%] lg:ml-[48%]'>
+      <a className='mt-[2%] md:ml-[45%] lg:ml-[48%]' href='/finish'>
         <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2'>Finish</button>
       </a>
     </div>
