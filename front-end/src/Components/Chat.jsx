@@ -2,8 +2,18 @@ import React from 'react'
 
 function Chat() {
   return (
-    <div>
-      
+    <div className='bg-mainBlack h-screen'>
+      <div>
+        {/*whole chat thing*/}
+        <div>Name</div>
+        <div>Chat</div>
+        <div>emoji, typing</div>
+
+      </div>
+      <div>
+        {/*All profiles  */}
+      </div>
+
     </div>
   )
 }
