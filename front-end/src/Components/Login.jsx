@@ -25,7 +25,8 @@ function Login() {
         </h2>
       </div>
       <div className='flex flex-co items-center justify-center'>
-      <div className='bg-black-gradient px-3 rounded-xl text-txt1'>About</div>
+      <div className='container-div'>
+      <div className='bg-black-gradient  px-3 py-2 rounded-xl mt-[-5%] z-10 w-20 ml-[5%] text-txt1'>About</div>
         <div className='bg-form w-96 p-10  rounded-lg text-txt1 mt-[3%] flex flex-col justify-center items-center'>
           <form className='flex flex-col justify-center items-center py-0'>
             <div className='flex flex-col'>
@@ -71,7 +72,8 @@ function Login() {
           </form>
         </div>
       </div>
-      <a className='mt-[2%] md:ml-[45%] lg:ml-[48%]' href='/finish'>
+      </div>
+      <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/finish'>
         <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2'>Finish</button>
       </a>
     </div>
