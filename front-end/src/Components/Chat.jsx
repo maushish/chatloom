@@ -12,7 +12,7 @@ function Chat() {
 
       </div>
       {/*Profiles Section */}
-      <div className='rounded-xl border border-gray-300 opacity-25 bg-gradient-to-r from-opacity-80 to-opacity-85 from-black to-black flex flex-col items-center justify-center w-[30%] mr-[60%] h-[50%] mt-[-54%]'>
+      <div className='rounded-xl border border-gray-300 opacity-25 bg-gradient-to-r from-opacity-80 to-opacity-85 from-black to-black flex flex-col items-center justify-center w-[30%] mr-[60%] h-[50%] mt-[-54%] xl:mt-[-35%]'>
         {/*USER'S PROFILE */}
       </div>
       <div>
@@ -20,6 +20,7 @@ function Chat() {
       </div>
 
     </div>
+
   )
 }
 
