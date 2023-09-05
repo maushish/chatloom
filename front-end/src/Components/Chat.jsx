@@ -9,6 +9,10 @@ function Chat() {
         <div>Chat</div>
         <div>emoji, typing</div>
 
+
+      </div>
+      <div>
+        {/*USER'S PROFILE */}
       </div>
       <div>
         {/*All profiles  */}
