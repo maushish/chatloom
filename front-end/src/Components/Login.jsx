@@ -53,7 +53,7 @@ function Login() {
                 <span className='font-semibold text-lg'>Name</span>
               </label>
               <input
-                className='rounded-md pl-2'
+                className='rounded-md text-black pl-2'
                 type='text'
                 id='username'
                 name='username'
