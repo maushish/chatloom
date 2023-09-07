@@ -1,12 +1,13 @@
 import React from 'react'
 import chatloom from '../Logo/chatloom.svg';
 import Group24 from '../Logo/Group24.svg';
-import { MatrixRainingLetters } from "react-mdr";
-
-
+import Video from '../Images/matrix.mp4'
 function Landing() {
   return (
+    <div>
+      <video src={Video} autoPlay loop muted className='bg-mainBlack opacity-90'/>
       <div className='bg-mainBlack h-screen z=1'>
+
         <div className=' text-txt1 flex flex-col items-center justify-center z=2 '>
             <a className=''>
             <img src={chatloom} alt='logo' className="h-20 mt-[1%] absolute left-0" />
@@ -27,6 +28,7 @@ function Landing() {
             </div>
         </div>
       </div>
+    </div>
   )
 
 }
