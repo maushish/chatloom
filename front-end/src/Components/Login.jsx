@@ -1,8 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 
 function Login() {
+  //Metamask installation
+  const [walletAddress, setWalletAddress] = useState("");
+
+  useEffect(() => {
+    getCurrentWallet();
+    addWalletListener();
+  }, []);
+
+  const connectWallet = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        setWalletAddress(accounts[0]);
+        console.log(accounts[0]);
+      } else {
+        console.log("Please install Metamask");
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const getCurrentWallet = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+        if (accounts.length > 0) {
+          setWalletAddress(accounts[0]);
+          console.log(accounts[0]);
+        } else {
+          console.log("Connect to Metamask using the connect button");
+        }
+      } else {
+        console.log("Please install Metamask");
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const addWalletListener = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
+        window.ethereum.on("accountsChanged", (accounts) => {
+          setWalletAddress(accounts[0]);
+          console.log(accounts[0]);
+        });
+      } else {
+        setWalletAddress("");
+        console.log("Please install Metamask");
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+
+  //-----x------
   const [avatar, setAvatar] = useState(null);
   const avatarInputRef = React.createRef();
 
@@ -104,7 +162,7 @@ function Login() {
       </div>
       </div>
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
-        <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2'>Finish</button>
+        <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2' onClick={connectWallet}>Finish</button>
       </a>
     </div>
     </div>
