@@ -18,7 +18,7 @@ function Landing() {
   return (
     <div className="relative ">
       <video src={Video} autoPlay loop muted style={videoStyle} />
-      <div className="absolute inset-0 bg-mainBlack opacity-80 h-screen">
+      <div className="absolute inset-0 bg-mainBlack opacity-70 h-screen">
 
       <div className=" text-txt1 flex flex-col items-center justify-center z-2">
         <a>
