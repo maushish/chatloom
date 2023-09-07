@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ava from "../Images/avatar.jpeg"
+import MatrixRainBackground from './Matrix';
 
 function Login() {
   const [avatar, setAvatar] = useState(null);
@@ -16,8 +17,37 @@ function Login() {
     avatarInputRef.current.click();
   };
 
+  //CSS FOR MATRIX EFFECT
+  const containerStyle = {
+    position: 'relative',
+    height: '100vh',
+  };
+
+  const matrixRainStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: -10, 
+    opacity: 3, 
+  };
+
+  const contentStyle = {
+    position: 'relative',
+    zIndex: 10, 
+    background: 'rgba(0, 0, 0, 0.7)', // Background color for content
+
+  };
+
   return (
-    <div className='bg-mainBlack flex flex-col justify-center h-screen'>
+    <div style={containerStyle}>
+    <div style={matrixRainStyle}>
+      <MatrixRainBackground />
+    </div>
+    <div className="absolute inset-0 bg-mainBlack opacity-0"></div>
+
+      <div  style={contentStyle} className='bg-mainBlack flex flex-col justify-center h-screen'>
       <div className='text-txt1 mt-[-8%]'>
         <h1 className='px-10 text-5xl'>Set up your profile!</h1>
         <h2 className='text-4xl px-10 py-5'>
@@ -76,6 +106,7 @@ function Login() {
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/finish'>
         <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2'>Finish</button>
       </a>
+    </div>
     </div>
   );
 }
