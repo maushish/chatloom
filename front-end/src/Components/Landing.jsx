@@ -12,7 +12,6 @@ function Landing() {
     height: '100%',
     objectFit: 'cover',
     zIndex: -10, 
-    
   };
 
   return (
