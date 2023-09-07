@@ -45,7 +45,7 @@ function Landing() {
             keep your identity <span className="text-customGreen"> safe</span>
           </h2>
           <div className="py-20 text-black">
-            <a href="/join">
+            <a href="/Login">
               <button className="px-4 py-2 bg-white rounded-md hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5 border-2">
                 Join {'>'}
               </button>
