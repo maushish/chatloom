@@ -2,7 +2,11 @@ import React from 'react';
 import convo from '../Logo/chatting.svg'
 import pfp from '../Logo/pfp.svg'
 
+
+
 function Chat() {
+
+
   return (
     <div className='bg-mainBlack h-screen flex flex-col items-center justify-center'>
       {/* Whole chat thing */}
@@ -12,25 +16,26 @@ function Chat() {
         <div>emoji, typing</div>
       </div>
       {/* Profiles Section */}
-      <div className='rounded-xl border border-gray-300 opacity-25 bg-gradient-to-r from-opacity-80 to-opacity-85 from-black to-black flex flex-col items-center justify-center w-[30%] mr-[60%] h-[50%] mt-[-54%] xl:mt-[-29%]'>
-        {/* USER'S PROFILE */}
-        <div>
-          <div className='w-[40vh] h-[8vh] bg-customGreen rounded-lg mt-[-100%]'>
+      <div>
+        <div className='w-[40vh] h-[8vh] bg-customGreen  rounded-lg mt-[-190%] ml-[-150%]'>
             <div></div>
             <div className='z=10'>
-              <a>
+              <a >
                 <img src={convo} className='h-[8vh] ml-20'></img>
               </a>
             </div>
             <div>
             <a>
-                <img src={pfp} className='h-[6vh] ml-60 mt-[-17%]'></img>
+                <img src={pfp} className='h-[6vh] ml-60 mt-[-17%]'>
+                </img>
               </a>
             </div>
 
           </div>
-          
         </div>
+      <div className='rounded-xl border border-gray-300 opacity-25 bg-gradient-to-r from-opacity-80 to-opacity-85 from-black to-black flex flex-col items-center justify-center w-[30%] mr-[60%] h-[50%] mt-[-54%] xl:mt-[-29%]'>
+        {/* USER'S PROFILE */}
+        
       </div>
       <div>
         {/* All profiles */}
