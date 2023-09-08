@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
+import {useHistory} from 'react-router-dom'
+
 
 function Login() {
   //Metamask installation
@@ -60,7 +62,7 @@ function Login() {
   };
 
 
-  //-----x------
+  //-----x------Avatar image-------//
   const [avatar, setAvatar] = useState(null);
   const avatarInputRef = React.createRef();
 
@@ -74,6 +76,8 @@ function Login() {
   const openAvatarInput = () => {
     avatarInputRef.current.click();
   };
+
+
 
   //CSS FOR MATRIX EFFECT
   const containerStyle = {
