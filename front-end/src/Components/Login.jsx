@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
-import {useHistory} from 'react-router-dom'
 
 
 function Login() {

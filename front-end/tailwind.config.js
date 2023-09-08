@@ -11,6 +11,7 @@ module.exports = {
         mainBlack: '#171515',
         txt1:'#FFF',
         btn:'#171515',
+        customGreen:'#5B9132',
       },
       backgroundColor:{
         'form': 'var(--grey-popup-base, #383838)',
