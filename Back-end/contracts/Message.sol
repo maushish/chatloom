@@ -32,8 +32,4 @@ contract Messaging {
         return (message.sender, message.content, message.timestamp);
     }
 
-    ///@notice this formats timestamp of the block and gives a readable time and date of the mesage    
-    function fornmatTimestamp(uint256 _timestamp) internal pure returns(string memory) {
-        return toTimeString(_timestamp);
-    }
 }

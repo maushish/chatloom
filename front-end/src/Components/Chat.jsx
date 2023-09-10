@@ -31,7 +31,7 @@ function Chat() {
       {/* Profiles Section */}
       <div>
         <div className='w-[40vh] h-[8vh] bg-customGreen rounded-lg mt-[-190%] ml-[-150%]'>
-          <div></div>
+
           <div className='z-10'>
             <a onClick={togglePopup}>
               <img src={convo} className='h-[8vh] ml-20' alt='Convo' />

@@ -1,6 +1,10 @@
 import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
+import { Web3Storage,  } from 'web3.storage'
+import { config } from 'dotenv';
+config();
+
 
 
 function Login() {
@@ -8,8 +12,6 @@ function Login() {
   const [walletAddress, setWalletAddress] = useState("");
 
   useEffect(() => {
-    getCurrentWallet();
-    addWalletListener();
   }, []);
 
   const connectWallet = async () => {
@@ -44,23 +46,6 @@ function Login() {
     }
   };
 
-  const addWalletListener = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setWalletAddress(accounts[0]);
-          console.log(accounts[0]);
-        });
-      } else {
-        setWalletAddress("");
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-
   //-----x------Avatar image-------//
   const [avatar, setAvatar] = useState(null);
   const avatarInputRef = React.createRef();
@@ -76,7 +61,43 @@ function Login() {
     avatarInputRef.current.click();
   };
 
+//-----upload------//
+const TOKEN = process.env.API;
 
+const uploadImageToIPFS = async (imageBuffer) => {
+  const storage = new Web3Storage({ token: TOKEN });
+  try {
+    const result = await storage.put(imageBuffer);
+    const ipfsHash = result.path;
+    console.log(`Image uploaded to IPFS with hash: ${ipfsHash}`);
+    return ipfsHash;
+  } catch (error) {
+    console.error('Error uploading image to IPFS:', error);
+    throw error;
+  }
+};
+
+
+const handleFinishButtonClick = async () => {
+  if (!avatar) {
+    console.error('Please select an avatar image.');
+    return;
+  }
+
+
+
+  try {
+    const ipfsHash = await uploadImageToIPFS(avatar);
+    console.log('Avatar image uploaded to IPFS with CID:', ipfsHash);
+
+    // Here, you can store the `ipfsHash` in your database or use it as needed.
+
+    // Proceed with any other actions you want to perform on the "Finish" button click.
+
+  } catch (error) {
+    console.error('Error uploading avatar image to IPFS:', error);
+  }
+};
 
   //CSS FOR MATRIX EFFECT
   const containerStyle = {
@@ -165,8 +186,14 @@ function Login() {
       </div>
       </div>
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
-        <button className='px-4 py-2 bg-white rounded-md  hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5  border-2' onClick={connectWallet}>Finish</button>
-      </a>
+      <button
+        className='px-4 py-2 bg-white rounded-md hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5 border-2'
+        onClick={handleFinishButtonClick}
+      >
+        Finish
+      </button>
+    </a>
+
     </div>
     </div>
   );
