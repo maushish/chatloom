@@ -2,8 +2,6 @@ import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
-import { config } from 'dotenv';
-config();
 
 
 
@@ -62,7 +60,6 @@ function Login() {
   };
 
 //-----upload------//
-const TOKEN = process.env.API;
 
 const uploadImageToIPFS = async (imageBuffer) => {
   const storage = new Web3Storage({ token: TOKEN });
@@ -129,17 +126,17 @@ const handleFinishButtonClick = async () => {
     </div>
     <div className="absolute inset-0 bg-mainBlack opacity-0"></div>
 
-      <div  style={contentStyle} className='bg-mainBlack flex flex-col justify-center h-screen'>
-      <div className='text-txt1 mt-[-8%]'>
+      <div  style={contentStyle} className='bg-mainBlack  flex flex-col justify-center h-screen'>
+      <div className='text-txt1 mt-[-8%] '>
         <h1 className='px-10 text-5xl'>Set up your profile!</h1>
         <h2 className='text-4xl px-10 py-5'>
           in <span className='text-customGreen font-bold'>1 </span>simple step
         </h2>
       </div>
-      <div className='flex flex-co items-center justify-center'>
+      <div className='flex flex-co items-center justify-center '>
       <div className='container-div relative'>
-      <div className='bg-black-gradient relative px-4 py-2 rounded-xl top-8 z-5 w-20 ml-[5%] text-txt1'>About</div>
-        <div className='bg-form w-96 p-10  z-0 rounded-lg text-txt1 mt-[3%] flex flex-col justify-center items-center'>
+      <div className='bg-black-gradient relative px-4 py-2 rounded-xl top-8 z-5 w-20 ml-[5%] text-txt1 border-white border'>About</div>
+        <div className='bg-form w-96 p-10  z-0 rounded-lg text-txt1 mt-[3%] flex flex-col justify-center items-center border-customGreen border-x border-y '>
           <form className='flex flex-col justify-center items-center py-0'>
             <div className='flex flex-col'>
             <label className='py-2' htmlFor='avatar' onClick={openAvatarInput} style={{ cursor: 'pointer' }}>
@@ -187,7 +184,7 @@ const handleFinishButtonClick = async () => {
       </div>
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
       <button
-        className='px-4 py-2 bg-white rounded-md hover:bg-black-gradient hover:text-white transition duration-950 hover:py-3 hover:px-5 border-2'
+        className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
         onClick={handleFinishButtonClick}
       >
         Finish

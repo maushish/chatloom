@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import convo from '../Logo/chatting.svg';
 import pfp from '../Logo/pfp.svg';
+import { AiOutlineUserAdd} from 'react-icons/ai'
 
 function Chat() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -21,25 +22,32 @@ function Chat() {
   };
 
   return (
+
     <div className='bg-mainBlack h-screen flex flex-col items-center justify-center'>
       {/* Whole chat thing */}
       <div className='rounded-xl border border-gray-300 opacity-25 bg-gradient-to-r from-opacity-80 to-opacity-85 from-black to-black flex flex-col items-center justify-center w-[60%] ml-[38%] mt-[3%] h-[78%]'>
-        <div>Name</div>
+        <div>
+          <div></div>
+        </div>
         <div>Chat</div>
         <div>emoji, typing</div>
       </div>
       {/* Profiles Section */}
       <div>
-        <div className='w-[40vh] h-[8vh] bg-customGreen rounded-lg mt-[-190%] ml-[-150%]'>
+        <div className='w-[40vh] h-[6vh] bg-customGreen rounded-lg mt-[-180%] ml-[-150%] flex flex-col items center justify-center'>
+          <div className='mt-[16%] ml-[-5%]'>
+          <div className="w-[80px] h-[80px] bg-gray-200 rounded-full overflow-hidden  mt-[3%]">
+            <img
+              src="https://via.placeholder.com/100x100" // Replace with your PFP image URL
+              alt="Profile Picture"
+              className="w-full h-full object-cover"
+            />
+        </div>
+        </div>
 
-          <div className='z-10'>
-            <a onClick={togglePopup}>
-              <img src={convo} className='h-[8vh] ml-20' alt='Convo' />
-            </a>
-          </div>
           <div>
             <a onClick={togglePopup}>
-              <img src={pfp} className='h-[6vh] ml-60 mt-[-17%]' alt='PFP' />
+              <AiOutlineUserAdd color='white' size={50} />
             </a>
           </div>
         </div>
@@ -75,7 +83,7 @@ function Chat() {
         {/* All profiles */}
       </div>
     </div>
-  );
+  )
 }
 
 export default Chat;
