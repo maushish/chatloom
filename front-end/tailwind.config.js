@@ -12,6 +12,7 @@ module.exports = {
         txt1:'#FFF',
         btn:'#171515',
         customGreen:'#5B9132',
+        customWhite:'#f5f5f5',
       },
       backgroundColor:{
         'form': 'var(--grey-popup-base, #383838)',

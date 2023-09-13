@@ -50,31 +50,30 @@ function Chat() {
           </div>
         </div>
 
-        <div className={`text-black ml-[-90%] mt-[50%] bg-white popup ${isPopupOpen ? 'block' : 'hidden'}`}>
-          <div className='popup-content opacity-100 z-20 flex flex-col items-center justify-center'>
-            <div className='flex flex-col  items-center justify-center'>
-            <button onClick={togglePopup} className='absolute top-1 left-0 text-gray-500 hover:text-gray-700'>
-              Close
-            </button>
-            <h2 className='py-20 text-lg'>Enter Wallet Address</h2>
-            <input
-              type='text'
-              placeholder='Wallet Address'
-              value={walletAddress}
-              className='pl-3 round-lg text-black border-3 border-customGreen border rounded-lg'
-              onChange={handleWalletAddressChange}
-            />
-            <button onClick={submitWalletAddress} className='mt-9 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800'>
-              <span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-                Add friend
-              </span>
-            </button>
+        <div className='flex flex-row ml-[-350%]  mt-[40%]'>
+          <div className={`text-Black bg-gradient-to-r from-slate-300 to-slate-500 py-20 w-[30%] rounded-lg  popup ${isPopupOpen ? 'block' : 'hidden'}`}>
+            <div className='popup-content opacity-100 z-20 flex flex-col items-center justify-center'>
+              <div className='flex flex-col items-center justify-center'>
+                <h2 className='py-4 text-2xl'>Enter Wallet Address</h2>
+                <input
+                  type='text'
+                  placeholder='Wallet Address'
+                  value={walletAddress}
+                  className='pl-3 round-lg text-black border-3 border-customGreen border rounded-lg'
+                  onChange={handleWalletAddressChange}
+                />
+                <button onClick={submitWalletAddress} className='mt-9 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800'>
+                  <span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+                    Add friend
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
 
-        <div>
-          {/* All profiles */}
+          <div>
+            {/* All profiles */}
+          </div>
         </div>
       </div>
     </div>
