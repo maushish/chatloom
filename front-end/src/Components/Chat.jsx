@@ -43,39 +43,35 @@ function Chat() {
 
           {/* Right section with icon and button */}
           <div className='flex items-center justify-between w-full '>
-            {/* Icon */}
-            <div className='ml-[35%]'>
-              <a onClick={togglePopup}>
-                <AiOutlineUserAdd color='white' size={50} />
-              </a>
-            </div>
+            {/* Button */}
+            <button onClick={togglePopup} className='ml-[35%]'>
+              <AiOutlineUserAdd color='white' size={50} />
+            </button>
           </div>
         </div>
 
-        {isPopupOpen && (
-          <div className='text-black  bg-white popup h-[40%] w-[30%] border-2 rounded-lg opacity-100 z-10 mt-[-40%] ml-[-60%]'>
-            <div className='popup-content opacity-100 z-20 flex flex-col items-center justify-center'>
-              <h2 className='text-4xl py-8'>Enter Wallet Address</h2>
-              <input
-                type='text'
-                placeholder='Wallet Address'
-                value={walletAddress}
-                className='pl-3 round-lg text-black border-3 border-customGreen border rounded-lg'
-                onChange={handleWalletAddressChange}
-              />
-              <button onClick={setWalletAddress} className='mt-9 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800'>
-                <span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-                  Add friend
-                </span>
-              </button>
-              <button onClick={togglePopup} type='button' className='mt-9 text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'>Close</button>
-              <div className='relative w-full pb-[43%]'>
-                <iframe src='https://giphy.com/embed/l3fZG4tZuHMzap9N6' className='absolute inset-0 w-full h-full' frameBorder='0' allowFullScreen></iframe>
-              </div>
-              <p><a href='https://giphy.com/gifs/starwars-movie-star-wars-l3fZG4tZuHMzap9N6'>via GIPHY</a></p>
-            </div>
+        <div className={`text-black ml-[-90%] mt-[50%] bg-white popup ${isPopupOpen ? 'block' : 'hidden'}`}>
+          <div className='popup-content opacity-100 z-20 flex flex-col items-center justify-center'>
+            <div className='flex flex-col  items-center justify-center'>
+            <button onClick={togglePopup} className='absolute top-1 left-0 text-gray-500 hover:text-gray-700'>
+              Close
+            </button>
+            <h2 className='py-20 text-lg'>Enter Wallet Address</h2>
+            <input
+              type='text'
+              placeholder='Wallet Address'
+              value={walletAddress}
+              className='pl-3 round-lg text-black border-3 border-customGreen border rounded-lg'
+              onChange={handleWalletAddressChange}
+            />
+            <button onClick={submitWalletAddress} className='mt-9 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800'>
+              <span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+                Add friend
+              </span>
+            </button>
           </div>
-        )}
+          </div>
+        </div>
 
         <div>
           {/* All profiles */}
