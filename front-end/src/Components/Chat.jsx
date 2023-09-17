@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineUserAdd } from 'react-icons/ai';
+import Add from './Add';
 
 function Chat() {
   // const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -34,7 +35,9 @@ function Chat() {
             <button className='absolute right-6'>
               <AiOutlineUserAdd color='white' size={50} />
             </button>
-            </div>
+
+            <Add/>
+             </div>
             <div className='bg-black-gradient border border-gray-300 rounded-xl w-[350px] h-[500px] absolute left-[200px] top-80'>profile</div>
           </div>
 
