@@ -21,7 +21,7 @@ function Chat() {
   // };
 
       const [showModal, hideModal] = useState(false); // Use 'setShowModal' for the updater function
-  
+      const handleOnClose=()=>hideModal(false)
     return (
       <div>
         <div>
@@ -38,7 +38,7 @@ function Chat() {
                   <AiOutlineUserAdd color='white' size={50} />
                 </button>
   
-                <Add visible={showModal} />
+                <Add onClose={handleOnClose} visible={showModal} />
               </div>
               <div className='bg-black-gradient border border-gray-300 rounded-xl w-[350px] h-[500px] absolute left-[200px] top-80'>profile</div>
             </div>
