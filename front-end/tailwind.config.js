@@ -2,6 +2,10 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
+      width: {
+        '150': '150px',
+        '200': '200px',
+      },
       // Custom named colors
       backgroundImage: {
         'black-gradient': 'linear-gradient(280deg, rgba(45, 45, 45, 0.80) 0%, rgba(0, 0, 0, 0.85) 100%)',
