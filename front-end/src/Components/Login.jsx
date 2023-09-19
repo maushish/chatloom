@@ -2,6 +2,9 @@ import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
+import { ethers, fromTwos } from "ethers";
+import {PROFILE_SMC, ABI} from './Constants/index'
+
 
 
 
@@ -118,7 +121,33 @@ const handleFinishButtonClick = async () => {
     background: 'rgba(0, 0, 0, 0.7)', // Background color for content
 
   };
+  //Ethers
+  useEffect(() => {
+    const initializeContract = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+        setContract(contract);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    initializeContract();
+  }, []);
+
+async function setProfile() {
+  const _name = userName; // Remove the extra parentheses
+  const _Bio = userBio; // Remove the extra parentheses
+  const _avatarHash = hash; // Remove the extra parentheses
+
+  const tx = await contract.setProfile(_name, _Bio, _avatarHash);
+  await tx.wait();
+
+  console.log('Profile set successfully!');
+
+  }
   return (
     <div style={containerStyle}>
     <div style={matrixRainStyle}>
@@ -193,7 +222,7 @@ const handleFinishButtonClick = async () => {
 
     </div>
     </div>
-  );
+  )
 }
 
 export default Login;

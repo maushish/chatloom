@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AiOutlineUserAdd } from 'react-icons/ai';
+import { AiOutlineUserAdd,AiFillVideoCamera,AiOutlineSend } from 'react-icons/ai';
 import Add from './Add';
 
 function Chat() {
@@ -27,7 +27,17 @@ function Chat() {
         <div>
           <div className="relative min-h-screen flex flex-col bg-mainBlack">
             <div className='container flex flex-col items-center relative'>
-              <div className='bg-black-gradient border border-gray-300 rounded-xl w-[800px] h-[700px] absolute left-[800px] top-40'>chat</div>
+              <div className='bg-black-gradient border border-gray-300 rounded-xl w-[800px] h-[700px] absolute left-[800px] flex flex-col items-center justify-center top-40'>
+                <nav><AiFillVideoCamera color='#9DF3FF' size={30} className='absolute right-32 top-9'/></nav>
+                <div class="border-t w-3/4  border-gray-300 my-4  absolute top-20"></div>
+                <div class="border-t w-3/4  border-gray-300 my-4  absolute bottom-20"></div>
+                <footer className='absolute bottom-10 flex flex-col items-center justify-center'>
+                  <input className=' w-[240%] bg-chatBlack rounded-lg pl-3 text-white h-10' placeholder='Type your message here'></input>
+                  <AiOutlineSend size={30} color='#9DF3FF' className='absolute left-80'/>
+                </footer>
+
+
+              </div>
               <img
                 src="https://via.placeholder.com/100x100" // Replace with your PFP image URL
                 alt="Profile Picture"
