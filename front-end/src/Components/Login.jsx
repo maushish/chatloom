@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
@@ -57,32 +57,35 @@ const uploadImageToIPFS = async (imageBuffer) => {
       console.error('Error uploading avatar image to IPFS:', error);
     }
   };
+//-------- Ethers-------------//
+  const [userName, setuserName]=useState('')
+  const [bio, setBio]=useState('')
+  // const [avatarHash, setAvatarHash]=useState('')
 
+  //Function to interact with smart contract
+  const sendDataToSMC=async()=>{
+    if(typeof window.ethereum===undefined){
+      alert("PLEASE INSTALL METAMASK!!")
+      return
+    }
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get the current account from MetaMask
+    const signer = provider.getSigner();
+    const sender = await signer.getAddress();
 
+    //SMC instance
+    const contract= new ethers.Contract(PROFILE_SMC,ABI,signer)
+    try{
+      const tx=await contract.setProfile(userName,bio)
+      await tx.wait()
 
+      setTransactionHash(tx.hash)
 
+    }catch (error){
+      console.error("Error sending txn:", error)
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }
 
   //CSS FOR MATRIX EFFECT
   const containerStyle = {
@@ -150,6 +153,7 @@ const uploadImageToIPFS = async (imageBuffer) => {
                 <span className='font-semibold text-lg'>Name</span>
               </label>
               <input
+                onChange={(e)=>setuserName(e.target.value)}
                 className='rounded-md text-black pl-2'
                 type='text'
                 id='username'
@@ -160,8 +164,7 @@ const uploadImageToIPFS = async (imageBuffer) => {
                 <span className='font-semibold text-lg'>Bio</span>
               </label>
               <textarea
-                
-
+                onChange={(e)=>setBio(e.target.value)}
                 className='rounded-md py-2 px-2 text-black text-sm'
                 id='bio'
                 name='bio'
@@ -175,7 +178,7 @@ const uploadImageToIPFS = async (imageBuffer) => {
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
       <button
         className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
-        onClick={() => setProfile(_username, _bio, _avatarHash)}
+        onClick={sendDataToSMC}
       >
         Finish
       </button>
