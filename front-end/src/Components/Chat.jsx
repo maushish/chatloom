@@ -3,25 +3,10 @@ import { AiOutlineUserAdd,AiFillVideoCamera,AiOutlineSend } from 'react-icons/ai
 import Add from './Add';
 
 function Chat() {
-  // const [isPopupOpen, setIsPopupOpen] = useState(false);
-  // const [walletAddress, setWalletAddress] = useState('');
 
-  // const togglePopup = () => {
-  //   setIsPopupOpen(!isPopupOpen);
-  // };
-
-  // const handleWalletAddressChange = (event) => {
-  //   setWalletAddress(event.target.value);
-  // };
-
-  // const submitWalletAddress = () => {
-  //   // Handle the submission of the wallet address here (e.g., send it to a server).
-  //   // You can also close the pop-up after submitting.
-  //   setIsPopupOpen(false);
-  // };
-
-      const [showModal, hideModal] = useState(false); // Use 'setShowModal' for the updater function
-      const handleOnClose=()=>hideModal(false)
+    const [showModal, hideModal] = useState(false); // Use 'setShowModal' for the updater function
+    const handleOnClose=()=>hideModal(false)
+        
     return (
       <div>
         <div>

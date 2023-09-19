@@ -2,50 +2,13 @@ import React, { useState,useEffect } from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
-import { ethers, fromTwos } from "ethers";
+import { ethers} from "ethers";
 import {PROFILE_SMC, ABI} from './Constants/index'
 
 
 
 
 function Login() {
-  //Metamask installation
-  const [walletAddress, setWalletAddress] = useState("");
-
-  useEffect(() => {
-  }, []);
-
-  const connectWallet = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setWalletAddress(accounts[0]);
-        console.log(accounts[0]);
-      } else {
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  const getCurrentWallet = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
-          console.log(accounts[0]);
-        } else {
-          console.log("Connect to Metamask using the connect button");
-        }
-      } else {
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
 
   //-----x------Avatar image-------//
   const [avatar, setAvatar] = useState(null);
@@ -77,27 +40,49 @@ const uploadImageToIPFS = async (imageBuffer) => {
   }
 };
 
+  const handleFinishButtonClick = async () => {
+    if (!avatar) {
+      console.error('Please select an avatar image.');
+      return;
+    }
+    try {
+      const ipfsHash = await uploadImageToIPFS(avatar);
+      console.log('Avatar image uploaded to IPFS with CID:', ipfsHash);
 
-const handleFinishButtonClick = async () => {
-  if (!avatar) {
-    console.error('Please select an avatar image.');
-    return;
-  }
+      // Here, you can store the `ipfsHash` in your database or use it as needed.
+
+      // Proceed with any other actions you want to perform on the "Finish" button click.
+
+    } catch (error) {
+      console.error('Error uploading avatar image to IPFS:', error);
+    }
+  };
 
 
 
-  try {
-    const ipfsHash = await uploadImageToIPFS(avatar);
-    console.log('Avatar image uploaded to IPFS with CID:', ipfsHash);
 
-    // Here, you can store the `ipfsHash` in your database or use it as needed.
 
-    // Proceed with any other actions you want to perform on the "Finish" button click.
 
-  } catch (error) {
-    console.error('Error uploading avatar image to IPFS:', error);
-  }
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   //CSS FOR MATRIX EFFECT
   const containerStyle = {
@@ -121,33 +106,7 @@ const handleFinishButtonClick = async () => {
     background: 'rgba(0, 0, 0, 0.7)', // Background color for content
 
   };
-  //Ethers
-  useEffect(() => {
-    const initializeContract = async () => {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
-        setContract(contract);
-      } catch (error) {
-        console.error(error);
-      }
-    };
 
-    initializeContract();
-  }, []);
-
-async function setProfile() {
-  const _name = userName; // Remove the extra parentheses
-  const _Bio = userBio; // Remove the extra parentheses
-  const _avatarHash = hash; // Remove the extra parentheses
-
-  const tx = await contract.setProfile(_name, _Bio, _avatarHash);
-  await tx.wait();
-
-  console.log('Profile set successfully!');
-
-  }
   return (
     <div style={containerStyle}>
     <div style={matrixRainStyle}>
@@ -201,6 +160,8 @@ async function setProfile() {
                 <span className='font-semibold text-lg'>Bio</span>
               </label>
               <textarea
+                
+
                 className='rounded-md py-2 px-2 text-black text-sm'
                 id='bio'
                 name='bio'
@@ -214,7 +175,7 @@ async function setProfile() {
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
       <button
         className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
-        onClick={handleFinishButtonClick}
+        onClick={() => setProfile(_username, _bio, _avatarHash)}
       >
         Finish
       </button>
@@ -222,7 +183,7 @@ async function setProfile() {
 
     </div>
     </div>
-  )
+  );
 }
 
 export default Login;
