@@ -2,7 +2,7 @@ import React from 'react';
 import chatloom from '../Logo/chatloom.svg';
 import Group24 from '../Logo/Group24.svg';
 import MatrixRainBackground from './Matrix';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 function Landing() {
   const containerStyle = {
@@ -24,6 +24,7 @@ function Landing() {
     position: 'relative',
     zIndex: 1, 
   };
+  const [walletAddress, setWalletAddress] = useState("");
 
   useEffect(() => {
     getCurrentWallet();
@@ -34,7 +35,7 @@ function Landing() {
     try {
       if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
         const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setWalletAddress(accounts[0]);
+        setWalletAddress(accounts[0]); // Update walletAddress state
         console.log(accounts[0]);
       } else {
         console.log("Please install Metamask");
@@ -43,6 +44,7 @@ function Landing() {
       console.error(err.message);
     }
   };
+
 
   const getCurrentWallet = async () => {
     try {

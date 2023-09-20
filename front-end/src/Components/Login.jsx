@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
@@ -60,9 +60,36 @@ const uploadImageToIPFS = async (imageBuffer) => {
 //-------- Ethers-------------//
   const [userName, setuserName]=useState('')
   const [bio, setBio]=useState('')
+
+//TO show wallet address---------------//
+  const checkConnectedWallet = async () => {
+    try {
+      if (typeof window.ethereum !== "undefined") {
+        // Request accounts from MetaMask or other Ethereum wallet
+        const accounts = await window.ethereum.request({ method: "eth_accounts" });
+        if (accounts.length > 0) {
+          // Update your component state with the user's Ethereum address
+          console.log("Connected wallet address:", accounts[0]);
+          // Now you can use accounts[0] as the user's Ethereum address
+        } else {
+          console.log("No Ethereum accounts found. Please connect your wallet.");
+        }
+      } else {
+        console.log("Ethereum provider not detected. Please install MetaMask.");
+      }
+    } catch (error) {
+      console.error("Error checking connected wallet:", error);
+    }
+  };
+
+  useEffect(() => {
+    checkConnectedWallet();
+  }, []);
+
   // const [avatarHash, setAvatarHash]=useState('')
 
   //Function to interact with smart contract
+
   const sendDataToSMC=async()=>{
     if(typeof window.ethereum===undefined){
       alert("PLEASE INSTALL METAMASK!!")
@@ -71,15 +98,15 @@ const uploadImageToIPFS = async (imageBuffer) => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     // Get the current account from MetaMask
     const signer = provider.getSigner();
-    const sender = await signer.getAddress();
 
     //SMC instance
     const contract= new ethers.Contract(PROFILE_SMC,ABI,signer)
+
     try{
-      const tx=await contract.setProfile(userName,bio)
+      const tx=await contract.setProfile(userName,bio ,'')
       await tx.wait()
 
-      setTransactionHash(tx.hash)
+      console.log("Transaction hash:", tx.hash);
 
     }catch (error){
       console.error("Error sending txn:", error)

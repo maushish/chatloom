@@ -13,7 +13,6 @@ function App() {
         <Route path='' element={<Landing/>}/>
         <Route path='/Login' element={<Login/>}/>
         <Route path='/Chat' element={<Chat/>}/>
-
       </Routes>
     </>
   )
