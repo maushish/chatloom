@@ -2,6 +2,6 @@
     "routes": [
     { "src": "/", "dest": "/index.html" },
     { "src": "/Login", "dest": "/Components/Login.jsx" },
-    { "src": "/Chat", "dest": "/Components/Chat.jsx" }
+    { "src": "/Chat", "dest": "/Components/Chat.jsx" },
     
   }
