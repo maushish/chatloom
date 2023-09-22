@@ -1,8 +1,7 @@
 { 
     "routes": [
       { "src": "/", "dest": "/" },
-      { "src": "/Login", "dest": "/Login" },
-      { "src": "/Chat", "dest": "/Chat" }
-      
+      { "src": "/Login", "dest": "/home/maushish/chatloom/front-end/src/Components/Login.jsx" },
+      { "src": "/Chat", "dest": "/home/maushish/chatloom/front-end/src/Components/Chat.jsx" }
     ]
   }
