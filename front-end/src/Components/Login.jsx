@@ -9,6 +9,39 @@ import {PROFILE_SMC, ABI} from './Constants/index'
 
 
 function Login() {
+  const [userName, setUserName] = useState('');
+const [bio, setBio] = useState('');
+
+   //-----x------Avatar image-------//
+   const [avatar, setAvatar] = useState(null);
+   const avatarInputRef = React.createRef();
+   const handleAvatarChange = (e) => {
+     const file = e.target.files[0];
+     if (file) {
+       setAvatar(URL.createObjectURL(file));
+     }
+   };
+   const openAvatarInput = () => {
+    try {
+   } catch (error) {
+    console.error('Error uploading image to IPFS:', error);
+    throw error;
+  }
+};
+   const handleFinishButtonClick = async () => {
+     if (!avatar) {
+       console.error('Please select an avatar image.');
+       return;
+     }
+     try {
+       const ipfsHash = await uploadImageToIPFS(avatar);
+       console.log('Avatar image uploaded to IPFS with CID:', ipfsHash);
+       // Here, you can store the `ipfsHash` in your database or use it as needed.
+       // Proceed with any other actions you want to perform on the "Finish" button click.
+     } catch (error) {
+       console.error('Error uploading avatar image to IPFS:', error);
+     }
+   };
 
 
 
