@@ -136,7 +136,6 @@ const [bio, setBio] = useState('');
       <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
       <button
         className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
-        onClick={sendDataToSMC}
       >
         Finish
       </button>
