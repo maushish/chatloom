@@ -72,7 +72,7 @@ function Login() {
   useEffect(() => {
     const initializeContract = async () => {
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const provider = new ethers.Browserprovider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(PROFILE_SMC, ABI, signer);
         setContract(contract);
