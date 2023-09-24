@@ -6,11 +6,7 @@ import { ethers} from "ethers";
 import {PROFILE_SMC, ABI} from './Constants/index'
 
 
-
-
 function Login() {
-  const [userName, setUserName] = useState('');
-const [bio, setBio] = useState('');
 
    //-----x------Avatar image-------//
    const [avatar, setAvatar] = useState(null);
@@ -67,6 +63,52 @@ const [bio, setBio] = useState('');
     background: 'rgba(0, 0, 0, 0.7)', // Background color for content
 
   };
+
+  //------------ethers----------//
+  const [contract, setContract] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [bio, setBio] = useState('');
+
+  useEffect(() => {
+    const initializeContract = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(PROFILE_SMC, ABI, signer);
+        setContract(contract);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    initializeContract();
+  }, []);
+  // Function to set profile on the smart contract
+  const setProfile = async () => {
+    if (!contract) {
+      console.error('Contract not initialized.');
+      return;
+    }
+
+    try {
+      // Check if username and bio are not empty
+      if (!userName || !bio) {
+        console.error('Username and Bio are required.');
+        return;
+      }
+
+      // Call the setProfile function on the smart contract
+      const tx = await contract.setProfile(userName, bio);
+
+      // Wait for the transaction to be mined
+      await tx.wait();
+
+      console.log('Profile set successfully.');
+    } catch (error) {
+      console.error('Error setting profile:', error);
+    }
+  };
+
 
   return (
     <div style={containerStyle}>
@@ -133,8 +175,9 @@ const [bio, setBio] = useState('');
         </div>
       </div>
       </div>
-      <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat'>
+      <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' >
       <button
+      onClick={setProfile}
         className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
       >
         Finish

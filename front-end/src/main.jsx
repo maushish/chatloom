@@ -5,10 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 import './styles/tailwind.css';
 
 
+
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
   </React.StrictMode>
 );
