@@ -72,9 +72,11 @@ function Login() {
   useEffect(() => {
     const initializeContract = async () => {
       try {
-        const provider = new ethers.Browserprovider(window.ethereum);
-        const signer = provider.getSigner();
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        await window.ethereum.enable();
         const contract = new ethers.Contract(PROFILE_SMC, ABI, signer);
+        console.log("hi")
         setContract(contract);
       } catch (error) {
         console.error(error);
@@ -96,9 +98,8 @@ function Login() {
         console.error('Username and Bio are required.');
         return;
       }
-
       // Call the setProfile function on the smart contract
-      const tx = await contract.setProfile(userName, bio);
+      const tx = await contract.setProfile(userName, bio,'');
 
       // Wait for the transaction to be mined
       await tx.wait();
@@ -153,7 +154,7 @@ function Login() {
                 <span className='font-semibold text-lg'>Name</span>
               </label>
               <input
-                onChange={(e)=>setuserName(e.target.value)}
+                onChange={(e)=>setUserName(e.target.value)}
                 className='rounded-md text-black pl-2'
                 type='text'
                 id='username'
