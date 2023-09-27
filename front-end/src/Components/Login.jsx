@@ -127,7 +127,7 @@ function Login() {
     <div className="absolute inset-0 bg-mainBlack opacity-0"></div>
 
       <div  style={contentStyle} className='bg-mainBlack  flex flex-col justify-center h-screen'>
-      <div className='text-txt1 mt-[-8%] '>
+      <div className='text-txt1 mt-[-8%] md:mt-[-2%] '>
         <h1 className='px-10 text-5xl'>Set up your profile!</h1>
         <h2 className='text-4xl px-10 py-5'>
           in <span className='text-customGreen font-bold'>1 </span>simple step
