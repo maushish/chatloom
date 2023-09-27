@@ -4,6 +4,8 @@ import MatrixRainBackground from './Matrix';
 import { Web3Storage,  } from 'web3.storage'
 import { ethers} from "ethers";
 import {PROFILE_SMC, ABI} from './Constants/index'
+import {useNavigate } from 'react-router-dom';
+
 
 
 function Login() {
@@ -65,6 +67,12 @@ function Login() {
   };
 
   //------------ethers----------//
+  const navigate=useNavigate()
+  const handleFinishAfterClick=async(event)=>{
+    event.preventDefault()
+    await setProfile()
+    navigate('/Chat')
+  }
   const [contract, setContract] = useState(null);
   const [userName, setUserName] = useState('');
   const [bio, setBio] = useState('');
@@ -176,9 +184,9 @@ function Login() {
         </div>
       </div>
       </div>
-      <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' >
+      <a className='mt-[2%] md:ml-[45%]  xl:ml-[48%]' href='/Chat' >
       <button
-      onClick={setProfile}
+      onClick={handleFinishAfterClick}
         className='px-4 py-2 text-white bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-3 hover:border-b-3 hover:border-r-3 hover:border-l-3 border-2'
       >
         Finish
