@@ -7,9 +7,9 @@
 const hre = require("hardhat");
 
 async function main() {
-  const user = await hre.ethers.deployContract("user");
-  await user.waitForDeployment();
-  console.log("user Contract deployed to:", user.target);
+  const UserProfile = await hre.ethers.deployContract("UserProfile");
+  await UserProfile.waitForDeployment();
+  console.log("UserProfile Contract deployed to:", UserProfile.target);
 
   await lock.waitForDeployment();
 
