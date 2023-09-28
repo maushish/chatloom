@@ -1,15 +1,13 @@
 import React, { useState,useEffect} from 'react';
 import ava from "../Images/avatar.jpeg"
 import MatrixRainBackground from './Matrix';
-import { Web3Storage,  } from 'web3.storage'
+import { Web3Storage} from 'web3.storage'
 import { ethers} from "ethers";
 import {PROFILE_SMC, ABI} from './Constants/index'
 import {useNavigate } from 'react-router-dom';
 
-
-
 function Login() {
-
+    
    //-----x------Avatar image-------//
    const [avatar, setAvatar] = useState(null);
    const avatarInputRef = React.createRef();
