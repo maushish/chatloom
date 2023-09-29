@@ -7,7 +7,6 @@ import './styles/tailwind.css'
 import { Routes, Route } from "react-router-dom"
 
 
-
 function App() {
 
 

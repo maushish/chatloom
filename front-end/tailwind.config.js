@@ -17,7 +17,7 @@ module.exports = {
         btn:'#171515',
         customGreen:'#5B9132',
         customWhite:'#f5f5f5',
-        chatBlack:'#434343',
+        chatBlack:'#434343',  
       },
       backgroundColor:{
         'form': 'var(--grey-popup-base, #383838)',
