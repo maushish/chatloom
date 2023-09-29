@@ -1,44 +1,91 @@
 import React, { useState } from 'react';
 import ani from '../Images/ani.mp4';
+import { PROFILE_SMC,ABI } from './Constants';
+import { ethers} from "ethers";
+import { RxCross1 } from "react-icons/rx";
 
-function Add({ visible,onClose,onAddFriend }) {
-  const [walletAddress,setWalletAddress]=useState('')//state to capture the address
-  const handleAddFriend=()=>{
-    onAddFriend(walletAddress)
-    onClose()//close the modal
+
+function Add({ visible, onClose, onAddFriend, ethereumProvider, userAddress }) {
+  const [walletAddress, setWalletAddress] = useState(''); // State to capture the entered wallet address
+  const [loading, setLoading] = useState(false); // State to track loading state
+  const [friendName, setFriendName] = useState(''); // State to store the friend's name from the smart contract
+  const [friendBio, setFriendBio] = useState(''); // State to store the friend's bio from the smart contract
+
+  if (!onAddFriend || typeof onAddFriend !== 'function') {
+    console.error('onAddFriend prop must be a function');
+    return null;
   }
+
+  const handleAddFriend = async () => {
+    setLoading(true); 
+
+    try {
+      const provider = new ethers.BrowserProvider(ethereumProvider);
+      const contractAddress = PROFILE_SMC;
+      const contractABI = ABI;
+
+      const contract = new ethers.Contract(contractAddress, contractABI, provider);
+
+      // Call the getProfileByAddress function of the smart contract
+      const result = await contract.getProfileByAddress(walletAddress);
+
+      // Update friendName and friendBio with data from the smart contract
+      setFriendName(result[0]);
+      setFriendBio(result[1]);
+
+      // Call the onAddFriend function passed as a prop to add the friend to the chat
+      onAddFriend(walletAddress);
+
+      // Close the modal
+      onClose();
+    } catch (error) {
+      console.error('Error fetching user profile from contract:', error);
+    } finally {
+      setLoading(false); // Reset loading state
+    }
+  };
 
   if (!visible) return null;
   return (
 
-    <div className='fixed inset-0 bg-opacity-100 z-20 backdrop-blur-sm flex flex-col justify-center items-center  '>
-      <div className="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-        <svg className="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-        </svg>
-        <span className="sr-only">Info</span>
-        <div>
-          <span className="font-medium">Info alert!</span> Make sure your friend is signed up on chatloom.
-        </div>
+    <div className='fixed inset-0 bg-opacity-100 z-20 backdrop-blur-sm flex flex-col justify-center items-center'>
+    <div className="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+      {/* Display friend's name and bio from the smart contract */}
+      <div>
+        <span className="font-medium">Friend's Name:</span>{friendName} 
       </div>
-      <div className='bg-black w-[500px] h-[400px] rounded-xl text-gray-300 flex flex-col items-center justify-center border border-white'>
-        <h1 className='text-4xl absolute top-[40vh]'>
-          Add your Friends
-        </h1>
+      <div>
+        <span className="font-medium">Friend's Bio:</span> {friendBio}
+      </div>
+    </div>
+    <div className='bg-black w-[500px] h-[400px] rounded-xl text-gray-300 flex flex-col items-center justify-center border border-white'>
+      <RxCross1 color='red' size={50} className='relative left-[22vh] top-3' onClick={onClose}/>
+      <h1 className='text-4xl absolute top-[45vh]'>
+        Add your Friends
+      </h1>
 
-
-
-        <input placeholder='Enter wallet address' className='pl-2 border rounded-lg  w-80 h-10 mt-[30%]'
-        onChange={(e)=>setWalletAddress(e.target.value)}
-        value={walletAddress} />
-        <button onClick={handleAddFriend} className="mt-[20%] relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+      <input
+        placeholder='Enter wallet address'
+        className='pl-2 border rounded-lg text-black w-80 h-10 mt-[30%]'
+        onChange={(e) => setWalletAddress(e.target.value)}
+        value={walletAddress}
+      />
+      <button
+        onClick={handleAddFriend}
+        className="mt-[20%] relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
+      >
+        {/* Display loading state while fetching data */}
+        {loading ? (
+          <span>Loading...</span>
+        ) : (
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
             Add Friend
           </span>
-        </button>
-      </div>
+        )}
+      </button>
     </div>
-  );
+  </div>
+);
 }
 
 export default Add;
