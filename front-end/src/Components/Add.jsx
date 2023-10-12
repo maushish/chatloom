@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import ani from '../Images/ani.mp4';
-import { PROFILE_SMC, ABI } from './Constants';
-import { ethers } from 'ethers';
-import { RxCross1 } from 'react-icons/rx';
+import { PROFILE_SMC,ABI } from './Constants';
+import { ethers} from "ethers";
+import { RxCross1 } from "react-icons/rx";
 
-function Add({ visible, onClose, onAddFriend, onAddFriendData, ethereumProvider, userAddress, friendName, friendBio }) {
+
+function Add({ visible, onClose, onAddFriend, ethereumProvider, userAddress ,onAddFriendData}) {
   const [walletAddress, setWalletAddress] = useState(''); // State to capture the entered wallet address
   const [loading, setLoading] = useState(false); // State to track loading state
+  const [friendName, setFriendName] = useState(''); // State to store the friend's name from the smart contract
+  const [friendBio, setFriendBio] = useState(''); // State to store the friend's bio from the smart contract
 
   const handleAddFriend = async () => {
-    setLoading(true);
+    setLoading(true); 
 
     try {
       const provider = new ethers.BrowserProvider(ethereumProvider);
@@ -21,11 +24,11 @@ function Add({ visible, onClose, onAddFriend, onAddFriendData, ethereumProvider,
       // Call the getProfileByAddress function of the smart contract
       const result = await contract.getProfileByAddress(walletAddress);
 
+      // Update friendName and friendBio with data from the smart contract
+      onAddFriendData(result[0],result[1]);
+
       // Call the onAddFriend function passed as a prop to add the friend to the chat
       onAddFriend(walletAddress);
-
-      // Call the parent's function to send data to the parent
-      onAddFriendData(result[0], result[1]);
 
       // Close the modal
       onClose();
@@ -41,10 +44,17 @@ function Add({ visible, onClose, onAddFriend, onAddFriendData, ethereumProvider,
 
     <div className='fixed inset-0 bg-opacity-100 z-20 backdrop-blur-sm flex flex-col justify-center items-center'>
     <div className="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-
+      {/* Display friend's name and bio from the smart contract */}
+      <div>
+      
+        <span className="font-medium">Friend's Name:</span> {friendName}
+      </div>
+      <div>
+        <span className="font-medium">Friend's Bio:</span> {friendBio}
+      </div>
     </div>
     <div className='bg-black w-[500px] h-[400px] rounded-xl text-gray-300 flex flex-col items-center justify-center border border-white'>
-      <RxCross1 color='red' size={50} className='relative left-[22vh] top-3' onClick={onClose}/>
+      <RxCross1 color='red' size={50} className='relative left-[23vh] top-3' onClick={onClose}/>
       <h1 className='text-4xl absolute top-[45vh]'>
         Add your Friends
       </h1>
@@ -56,7 +66,7 @@ function Add({ visible, onClose, onAddFriend, onAddFriendData, ethereumProvider,
         value={walletAddress}
       />
       <button
-        onClick={()=>handleAddFriend(friendName,friendBio)}//passing data from child to parent cc:Alok
+        onClick={handleAddFriend}
         className="mt-[20%] relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800"
       >
         {/* Display loading state while fetching data */}
