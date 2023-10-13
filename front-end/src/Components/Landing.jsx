@@ -104,7 +104,7 @@ function Landing() {
         </div>
         <div className="text-5xl py-20 flex flex-col items-center justify-center">
           <h2>
-            keep your identity <span className="text-customGreen"> safe</span>
+            keep your identity<span className="text-customGreen">safe</span>
           </h2>
           <div className="py-20 text-white">
             <a href="/Login">
