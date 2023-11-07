@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineUserAdd, AiFillVideoCamera, AiOutlineSend } from 'react-icons/ai';
-import Add from './Add';
 import { ethers } from 'ethers';
 
 function Chat() {
-  const [showModal, hideModal] = useState(false);
-  const handleOnClose = () => hideModal(false);
-  const [friendName, setFriendName] = useState("");
-  const [friendBio, setFriendBio] = useState("");
-  const handleAddFriendData = (friendNameArg, friendBioArg) => {
-    // Handle the data received from the child component (Add)
-    console.log('Received data from child component:', friendNameArg, friendBioArg);
-    setFriendName(friendNameArg)
-    setFriendBio(friendBioArg)
-    // You can perform any necessary actions with the data here
-  };
+
 
   useEffect(() => {
     // Use ethers.js to interact with Ethereum using the userAddress
@@ -45,27 +34,32 @@ function Chat() {
   return (
     <div>
       <div>
-        <div className="relative min-h-screen flex flex-col bg-mainBlack">
+        <div className="relative min-h-screen  h-full flex flex-col bg-mainBlack">
           <div className="container flex flex-col items-center relative">
-            <div className="bg-black-gradient border border-gray-300 rounded-xl lg:w-[800px] md:w-[600px] lg:h-[700px] md:h-[500px] l absolute left-[800px] flex flex-col items-center justify-center lg:top-40 md:top-20">
+          {/*----------Connect to other peer ----------------------------------------------------------*/}
+            {/* <div className="bg-customGreen w-40 h-[55px] z-1 rounded-3xl absolute lg:left-[250px] lg:top-40 md:top-5 md:left-[60px]"> */}
+            <div className='bg-black-gradient w-[85vh] border  h-[8vh] absolute top-9 lg:left-[53vh] md:left-[7vh] rounded-full border-gray-300 '>
+              <div className='flex flex-col items-center justify-center'>
+                <input className=' rounded-3xl text-black absolute top-5 left-5 pl-4 text-lg   w-[60vh] h-[3.5vh]' 
+                placeholder='Paste your peer address'>
+                </input>
+
+              </div>
+              <button 
+              className="absolute right-[4vh] text-2xl top-[20px] rounded-full w-[15vh] bg-black text-white hover:bg-white hover:text-black transition duration-3100 hover:py-[4px]  hover:top-[15px] hover:px-2  hover:border-customGreen hover:border-t-4 hover:border-b-4 hover:border-r-4 hover:border-l-4 border-2">
+                Connect
+              </button>
+
+
+           </div>
+            <div className="bg-black-gradient border border-gray-300 rounded-xl lg:w-[1000px] md:w-[800px]  lg:h-[700px] md:h-[500px] l absolute lg:left-[42vh] md:left-[8vh] flex flex-col items-center justify-center lg:top-40 md:top-40">
               <nav>
-                <AiFillVideoCamera color="#9DF3FF" size={30} className="absolute right-32 top-9" />
                 <div id="loading" className="absolute top-5 lg:left-32 md:left-12">
-                  <svg
-                    className="w-10 h-10 absolute top-2 text-gray-200 dark:text-gray-700"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                  </svg>
+                  {/* show the other person address -----------------------------------------------------------------*/}
+
                   <div className="absolute left-12 top-4 text-white text-sm">
-                  <div id='username' className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-34 mb-2">
-                    {friendName}
-                  </div>
-                  <div id='bio' className="w-48 h-3 text-white bg-gray-200 rounded-full dark:bg-gray-700">
-                    {friendBio}
+   
+                  <div id='bio' className="w-48 h-8 text-white bg-gray-200 rounded-full dark:bg-gray-700">
                   </div>
 
                   </div>
@@ -73,32 +67,15 @@ function Chat() {
               </nav>
               <div className="border-t w-3/4  border-gray-300 my-4  absolute top-20"></div>
               <div className="border-t w-3/4  border-gray-300 my-4  absolute bottom-20"></div>
-              <footer className="absolute bottom-10 flex flex-col items-center justify-center">
+              <footer className="absolute bottom-7 flex flex-col items-center justify-center ">
                 <input
-                  className="lg:w-[240%] md:w-[150%] bg-chatBlack rounded-lg pl-3 text-white h-10"
+                  className="lg:w-[340%] md:w-[250%] bg-chatBlack rounded-lg pl-4 text-white h-[5vh] "
                   placeholder="Type your message here"
                 ></input>
-                <AiOutlineSend size={30} color="#9DF3FF" className="absolute lg:left-80 md:left-[280px]" />
+                <AiOutlineSend size={30} color="#9DF3FF" className="absolute lg:left-[42vh] md:left-[280px]" />
               </footer>
             </div>
-            <img
-              src="https://via.placeholder.com/100x100" // Replace with your PFP image URL
-              alt="Profile Picture"
-              className="w-20 absolute lg:left-[220px] lg:top-[148px] md:top-[10px] z-20 object-cover rounded-full md:left-[60px]"
-            />
-            <div className="bg-customGreen w-40 h-[55px] z-1 rounded-3xl absolute lg:left-[250px] lg:top-40 md:top-5 md:left-[60px]">
-              <button onClick={() => hideModal(true)} className="absolute right-6">
-                <AiOutlineUserAdd color="white" size={50} />
-              </button>
-              <Add
-        onClose={handleOnClose}
-        visible={showModal}
-        ethereumProvider={window.ethereum}
-        onAddFriend={onAddFriend}
-        onAddFriendData={handleAddFriendData} 
-        friendName={friendName}
-        friendBio={friendBio}/> 
-           </div>
+
           </div>
         </div>
       </div>

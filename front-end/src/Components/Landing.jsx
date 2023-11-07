@@ -107,7 +107,7 @@ function Landing() {
             keep your identity<span className="text-customGreen">safe</span>
           </h2>
           <div className="py-20 text-white">
-            <a href="/Login">
+            <a href="/Chat">
               <button onClick={connectWallet} className="px-4 py-2 bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-4 hover:border-b-4 hover:border-r-4 hover:border-l-4 border-2">
                 Join {'>'}
               </button>
