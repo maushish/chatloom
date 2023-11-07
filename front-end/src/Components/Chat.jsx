@@ -32,54 +32,39 @@ function Chat() {
   }
 
   return (
-    <div>
-      <div>
-        <div className="relative min-h-screen  h-full flex flex-col bg-mainBlack">
-          <div className="container flex flex-col items-center relative">
-          {/*----------Connect to other peer ----------------------------------------------------------*/}
-            {/* <div className="bg-customGreen w-40 h-[55px] z-1 rounded-3xl absolute lg:left-[250px] lg:top-40 md:top-5 md:left-[60px]"> */}
-            <div className='bg-black-gradient w-[85vh] border  h-[8vh] absolute top-9 lg:left-[53vh] md:left-[7vh] rounded-full border-gray-300 '>
-              <div className='flex flex-col items-center justify-center'>
-                <input className=' rounded-3xl text-black absolute top-5 left-5 pl-4 text-lg   w-[60vh] h-[3.5vh]' 
-                placeholder='Paste your peer address'>
-                </input>
-
-              </div>
-              <button 
-              className="absolute right-[4vh] text-2xl top-[20px] rounded-full w-[15vh] bg-black text-white hover:bg-white hover:text-black transition duration-3100 hover:py-[4px]  hover:top-[15px] hover:px-2  hover:border-customGreen hover:border-t-4 hover:border-b-4 hover:border-r-4 hover:border-l-4 border-2">
-                Connect
-              </button>
-
-
-           </div>
-            <div className="bg-black-gradient border border-gray-300 rounded-xl lg:w-[1000px] md:w-[800px]  lg:h-[700px] md:h-[500px] l absolute lg:left-[42vh] md:left-[8vh] flex flex-col items-center justify-center lg:top-40 md:top-40">
-              <nav>
-                <div id="loading" className="absolute top-5 lg:left-32 md:left-12">
-                  {/* show the other person address -----------------------------------------------------------------*/}
-
-                  <div className="absolute left-12 top-4 text-white text-sm">
-   
-                  <div id='bio' className="w-48 h-8 text-white bg-gray-200 rounded-full dark:bg-gray-700">
-                  </div>
-
-                  </div>
-                </div>
-              </nav>
-              <div className="border-t w-3/4  border-gray-300 my-4  absolute top-20"></div>
-              <div className="border-t w-3/4  border-gray-300 my-4  absolute bottom-20"></div>
-              <footer className="absolute bottom-7 flex flex-col items-center justify-center ">
-                <input
-                  className="lg:w-[340%] md:w-[250%] bg-chatBlack rounded-lg pl-4 text-white h-[5vh] "
-                  placeholder="Type your message here"
-                ></input>
-                <AiOutlineSend size={30} color="#9DF3FF" className="absolute lg:left-[42vh] md:left-[280px]" />
-              </footer>
-            </div>
-
-          </div>
+    <div className="relative min-h-screen h-full flex flex-col bg-mainBlack">
+    <div className="container mx-auto flex flex-col items-center relative p-4">
+      {/*----------Connect to other peer ----------------------------------------------------------*/}
+        <div className='flex justify-between items-center'>
+          <input className='rounded-3xl bg-white text-black flex-grow mx-4 h-[4vh] w-[45vh] pl-3' 
+          placeholder='Paste your peer address'>
+          </input>
+          <button 
+          className="text-2xl rounded-full bg-black text-white hover:bg-white hover:text-black transition duration-300 ease-in-out py-2 px-4 border-customGreen border">
+            Connect
+          </button>
         </div>
+      <div className="bg-black-gradient border border-gray-300 rounded-xl w-full max-w-4xl h-[700px] flex flex-col items-center justify-center my-4">
+        <nav>
+          {/* ... */}
+        </nav>
+        <div className='absolute bottom-20  w-[100vh]'>
+  {/* Adjusted the width to 3/4 of its parent by using w-3/4 */}
+  <div className="border-t lg:w-3/4 md:w-3/4  xl:w-3/4 border-gray-300 my-4 absolute right-[11vh] bottom-[6vh]"></div>
+  <footer className="w-full flex justify-center p-4 ">
+    {/* Increased the width of the input to be less than full width but more than the previous max-w-2xl */}
+    <input
+      className="lg:w-5/6 md:w-1/2 xl:w-1/2 bg-chatBlack rounded-lg px-4 text-white absolute bottom-2 h-[4vh] "
+      placeholder="Type your message here"
+    ></input>
+    
+    <AiOutlineSend size={30} color="#9DF3FF" className="ml-4 absolute lg:right-2 lg:bottom-1.5 xl:bottom-[13px] md:right-[20vh] md:bottom-3 xl:right-[20vh]" />
+  </footer>
+</div>
+
       </div>
     </div>
+  </div>
   );
 }
 
