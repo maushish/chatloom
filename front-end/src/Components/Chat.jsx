@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AiOutlineUserAdd, AiFillVideoCamera, AiOutlineSend } from 'react-icons/ai';
+import {  AiOutlineSend } from 'react-icons/ai';
 import { ethers } from 'ethers';
 
 function Chat() {

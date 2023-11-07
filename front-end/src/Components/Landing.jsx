@@ -8,7 +8,7 @@ function Landing() {
   const containerStyle = {
     position: 'relative',
     height: '100vh',
-  };
+  }
 
   const matrixRainStyle = {
     position: 'absolute',
