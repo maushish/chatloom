@@ -1,8 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import {  AiOutlineSend } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function Chat() {
+  const navigate = useNavigate();
 
+  const [session, setSession] = useState({});
+
+  useEffect(() => {
+    axios(`${process.env.REACT_APP_SERVER_URL}/authenticate`, {
+      withCredentials: true,
+    })
+      .then(({ data }) => {
+        const { iat, ...authData } = data; // remove unimportant iat value
+
+        setSession(authData);
+      })
+      .catch((err) => {
+        navigate('/');
+      });
+  }, []);
+
+  async function signOut() {
+    await axios(`${process.env.REACT_APP_SERVER_URL}/logout`, {
+      withCredentials: true,
+    });
+
+    navigate('/');
+  }
 
  
 
