@@ -24,67 +24,6 @@ function Landing() {
     position: 'relative',
     zIndex: 1, 
   };
-  const [walletAddress, setWalletAddress] = useState("");
-
-  useEffect(() => {
-    getCurrentWallet();
-    addWalletListener();
-  }, []);
-
-  const connectWallet = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        setWalletAddress(accounts[0]); // Update walletAddress state
-        console.log(accounts[0]);
-      } else {
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-
-  const getCurrentWallet = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-        if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
-          console.log(accounts[0]);
-        } else {
-          console.log("Connect to Metamask using the connect button");
-        }
-      } else {
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  const addWalletListener = async () => {
-    try {
-      if (typeof window.ethereum !== "undefined" && typeof window.ethereum !== "undefined") {
-        window.ethereum.on("accountsChanged", (accounts) => {
-          setWalletAddress(accounts[0]);
-          console.log(accounts[0]);
-        });
-      } else {
-        setWalletAddress("");
-        console.log("Please install Metamask");
-      }
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-
-
-
-
-
 
   return (
     <div style={containerStyle}>
@@ -108,7 +47,7 @@ function Landing() {
           </h2>
           <div className="py-20 text-white">
             <a href="/Chat">
-              <button onClick={connectWallet} className="px-4 py-2 bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-4 hover:border-b-4 hover:border-r-4 hover:border-l-4 border-2">
+              <button  className="px-4 py-2 bg-black rounded-md hover:bg-white hover:text-black transition duration-3100 hover:py-2 hover:px-4  hover:border-customGreen hover:border-t-4 hover:border-b-4 hover:border-r-4 hover:border-l-4 border-2">
                 Join {'>'}
               </button>
             </a>

@@ -1,35 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {  AiOutlineSend } from 'react-icons/ai';
-import { ethers } from 'ethers';
 
 function Chat() {
 
 
-  useEffect(() => {
-    // Use ethers.js to interact with Ethereum using the userAddress
-    const getUserAddress = async () => {
-      try {
-        if (typeof window.ethereum !== 'undefined' && typeof window.ethereum !== 'undefined') {
-          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const userAddress = accounts[0]; // Get the user's Ethereum address
-          const provider = new ethers.BrowserProvider(window.ethereum);
-          const signer = provider.getSigner();
-          
-          // Now you can use signer to interact with Ethereum, e.g., send transactions, call smart contract functions, etc.
-          console.log('User Address:', userAddress);
-        } else {
-          console.log('Please install Metamask');
-        }
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
-
-    getUserAddress();
-  }, []);
-  function onAddFriend(walletAddress) {
-    // Add the friend to the chat
-  }
+ 
 
   return (
     <div className="relative min-h-screen h-full flex flex-col bg-mainBlack">
