@@ -44,5 +44,9 @@
     "prettier-plugin-tailwindcss": "^0.5.6",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.5"
-  }
+  },
+  "description": "",
+  "main": "prettier.config.js",
+  "author": "Maushsih",
+  "license": "ISC"
 }
