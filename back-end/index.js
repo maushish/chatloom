@@ -10,10 +10,6 @@ const { EvmChain } = require("@moralisweb3/common-evm-utils");
 const app = express();
 const port = 3001;
 
-// Add a variable for the api key, address and chain
-const MORALIS_API_KEY = API_KEY;
-const address = "0xD4cd86fC20602Bb54bb76A6052b8a716B1837e79";
-const chain = EvmChain.ETHEREUM;
 
 app.use(express.json());
 
@@ -21,19 +17,6 @@ app.get("/", (req, res) => {
   res.send("YOOO CHECKING");
 });
 
-
-
-//Fetching data from the blockchain regarding the address
-async function getData() {
-    //get native balance
-    const yourBalance= await Moralis.EvmApi.balance.getNativeBalance({
-        address,chain,
-    });
-    //format the balance in terms of ether
-    const native= yourBalance.result.balance.ether
-    return {native}
-
-}
 
 app.get("/demo", async (req, res) => {
     try {
