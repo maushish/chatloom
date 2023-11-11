@@ -4,8 +4,6 @@ const API_KEY=process.env.MORALIS_API_KEY
 const express = require("express");
 // Import Moralis
 const Moralis = require("moralis").default;
-// Import the EvmChain dataType
-const { EvmChain } = require("@moralisweb3/common-evm-utils");
 
 const app = express();
 const port = 3001;
