@@ -8,19 +8,19 @@ function Chat() {
 
   const [session, setSession] = useState({});
 
-  useEffect(() => {
-    axios(`${process.env.REACT_APP_SERVER_URL}/authenticate`, {
-      withCredentials: true,
-    })
-      .then(({ data }) => {
-        const { iat, ...authData } = data; // remove unimportant iat value
+  // useEffect(() => {
+  //   axios(`${process.env.REACT_APP_SERVER_URL}/authenticate`, {
+  //     withCredentials: true,
+  //   })
+  //     .then(({ data }) => {
+  //       const { iat, ...authData } = data; // remove unimportant iat value
 
-        setSession(authData);
-      })
-      .catch((err) => {
-        navigate('/');
-      });
-  }, []);
+  //       setSession(authData);
+  //     })
+  //     .catch((err) => {
+  //       navigate('/');
+  //     });
+  // }, []);
 
   async function signOut() {
     await axios(`${process.env.REACT_APP_SERVER_URL}/logout`, {
