@@ -6,7 +6,7 @@ const express = require("express");
 const Moralis = require("moralis").default;
 
 const app = express();
-const port = 3001;
+const port = process.env.REACT_URL
 
 
 app.use(express.json());

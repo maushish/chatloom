@@ -23,7 +23,7 @@ function Chat() {
   // }, []);
 
   async function signOut() {
-    await axios(`${process.env.REACT_APP_SERVER_URL}/logout`, {
+    await axios(`${process.env.REACT_APP_SERVER_URL}`, {
       withCredentials: true,
     });
 
