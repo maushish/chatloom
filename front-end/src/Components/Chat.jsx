@@ -21,6 +21,7 @@ function Chat() {
         navigate('/');
       });
   }, []);
+//for signing out
 
   async function signOut() {
     await axios(`${process.env.REACT_APP_SERVER_URL}`, {
