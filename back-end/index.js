@@ -7,13 +7,16 @@ const port = process.env.PORT || 3001
 
 require('dotenv').config()
 app.use(express.json());
-app.use(cookieParser())//calling cookie
 app.get("/", (req, res) => {
   res.send("YOOO CHECKING");
 });
 
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
 const jwt = require('jsonwebtoken');
+app.use(cookieParser())//calling cookie
+
 app.use(
   cors({
     origin: process.env.REACT_URL,
