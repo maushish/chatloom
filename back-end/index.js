@@ -12,10 +12,9 @@ app.get("/", (req, res) => {
 });
 
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
-
 const jwt = require('jsonwebtoken');
 app.use(cookieParser())//calling cookie
+const cors = require('cors');
 
 app.use(
   cors({
