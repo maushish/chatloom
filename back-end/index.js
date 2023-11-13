@@ -12,21 +12,6 @@ app.get("/", (req, res) => {
   res.send("YOOO CHECKING");
 });
 
-// // app.get("/demo", async (req, res) => {
-//     try {
-//       // Get and return the crypto data
-//       const data = await getData();
-//       res.status(200);
-//       res.json(data);
-//     } catch (error) {
-//       // Handle errors
-//       console.error(error);
-//       res.status(500);
-//       res.json({ error: error.message });
-//     }
-//   });
-// for our server's method of setting a user session
-
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 app.use(
