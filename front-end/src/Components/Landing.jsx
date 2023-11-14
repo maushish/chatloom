@@ -48,7 +48,7 @@ function Landing() {
       connector: new InjectedConnector(),
     })
     
-    const userData={address: account, chain:1};
+    const userData={address: account, chain:5};
     //making a post req to our "request-message" endpoint
     const {data}=await axios.post(
       `${process.env.React_APP_SERVER_URL}/request-message`,

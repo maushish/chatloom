@@ -19,17 +19,6 @@ const config = createConfig({
   webSocketPublicClient,
 });
 
-
-// const router = createBrowserRouter([
-//   {
-//     path: "/Chat",
-//     element: <Chat />,
-//   },
-//   {
-//     path: "/",
-//     element: <Landing/>,
-//   },
-// ]);
 function App() {
 
 
