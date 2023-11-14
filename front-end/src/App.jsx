@@ -20,10 +20,6 @@ const config = createConfig({
 });
 
 function App() {
-
-
-
-
   return (
     <><WagmiConfig config={config}>
         <Routes>
